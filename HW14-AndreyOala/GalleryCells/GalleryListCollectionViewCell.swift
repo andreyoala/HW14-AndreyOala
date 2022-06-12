@@ -43,8 +43,6 @@ class GalleryListCollectionViewCell: UICollectionViewCell {
             imageView.image = image
         }
     
-
-    
     required init?(coder: NSCoder) {
         fatalError()
     }

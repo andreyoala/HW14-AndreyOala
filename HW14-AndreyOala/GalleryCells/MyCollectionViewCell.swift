@@ -22,7 +22,6 @@ class MyCollectionViewCell: UICollectionViewCell {
         imageView.image = image
 }
 
-
 }
 
 extension MyCollectionViewCell {

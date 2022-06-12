@@ -25,6 +25,8 @@ class ThirdViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         title = "Albums"
         view.backgroundColor = .white
         configureCollectionView()
@@ -42,11 +44,10 @@ class ThirdViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    
     //MARK: - Settings
-    
     private func setupHierarchy() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "See All", style: .plain, target: self, action: nil)
     }
     
     //MARK: - Functions
@@ -81,7 +82,7 @@ class ThirdViewController: UIViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        item.contentInsets = NSDirectionalEdgeInsets (top: 2, leading: 10, bottom: 2, trailing: 10)
+        item.contentInsets = NSDirectionalEdgeInsets (top: 4, leading: 10, bottom: 8, trailing: 10)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         
@@ -114,7 +115,7 @@ class ThirdViewController: UIViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        item.contentInsets = NSDirectionalEdgeInsets (top: 2, leading: 10, bottom: 2, trailing: 10)
+        item.contentInsets = NSDirectionalEdgeInsets (top: 4, leading: 10, bottom: 8, trailing: 10)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(175))
         
@@ -187,7 +188,6 @@ class ThirdViewController: UIViewController {
         return section
     }
     
-    
     private lazy var photoRange: ClosedRange<Int> = 1...photoCells.count
     private lazy var secondPhotoRange: ClosedRange<Int> = (photoRange.upperBound + 1)...(photoRange.upperBound + secondPhotoCells.count)
     private lazy var listRange: ClosedRange<Int> = (secondPhotoRange.upperBound + 1)...(secondPhotoRange.upperBound + listCells.count)
@@ -248,6 +248,7 @@ class ThirdViewController: UIViewController {
             }
             fatalError("Cannot create the cell")
         }
+        // MARK: - Snapshot
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
         let sections: [Section] = [.albumBody, .secondAlbumBody, .listBody, .secondListBody]
@@ -262,7 +263,7 @@ class ThirdViewController: UIViewController {
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
-// MARK: - Extension
+        // MARK: - Extension
 
 extension ThirdViewController {
     func configureCollectionView() {
