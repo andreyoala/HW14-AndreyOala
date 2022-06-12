@@ -19,7 +19,6 @@ class ThirdViewController: UIViewController {
     //MARK: - Views
     
     var photoCollectionView: UICollectionView! = nil
-    
     var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
     
     //MARK: - Lifecycle
@@ -199,6 +198,8 @@ class ThirdViewController: UIViewController {
     private var listCells: [List] = List.itemsForCells()
     private var secondListCells: [SecondList] = SecondList.itemsForCells()
     
+    // MARK: - DataSource func
+    
     func configureDataSource() {
         
         dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: photoCollectionView) { [self]
@@ -261,6 +262,7 @@ class ThirdViewController: UIViewController {
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
+// MARK: - Extension
 
 extension ThirdViewController {
     func configureCollectionView() {
